@@ -63,7 +63,7 @@ class WebsocketClient
 		$this->_origin = $origin;
 		
 		$key = base64_encode($this->_generateRandomString(16, false, true));				
-		$header = "GET " . $path . " HTTP/1.1\r\n";
+		$header = "";
 		$header.= "Host: ".$host.":".$port."\r\n";
 		$header.= "Upgrade: websocket\r\n";
 		$header.= "Connection: Upgrade\r\n";
@@ -71,6 +71,7 @@ class WebsocketClient
 		if($origin !== false)
 		{
 			$header.= "Sec-WebSocket-Origin: " . $origin . "\r\n";
+			$header.= "Origin: " . $origin . "\r\n";
 		}
 		$header.= "Sec-WebSocket-Version: 13\r\n\r\n";			
 		
